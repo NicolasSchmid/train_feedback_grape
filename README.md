@@ -1,10 +1,3 @@
-# My Project
+# In this folder will be all the python codes run directely on the DGX
 
-A short description.
-
-## Installation
-- step 1
-- step 2
-
-## Usage
-Explain how to run it.
+explain how this works
