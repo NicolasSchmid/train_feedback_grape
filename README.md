@@ -8,10 +8,3 @@ A short description.
 
 ## Usage
 Explain how to run it.
-
-# Fix it
-
-# This is the trial
-
-More the merrier #
-
