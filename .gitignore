@@ -1,0 +1,62 @@
+# --- Python bytecode / caches ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Virtual environments ---
+.venv/
+venv/
+ENV/
+env/
+.env/
+.envs/
+
+
+# --- Images (do not upload images) ---
+# common raster & vector formats
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.bmp
+*.tiff
+*.ico
+*.webp
+
+# --- Keep project metadata & lock files (do NOT ignore these) ---
+# Ensure these files are tracked so other users can recreate the environment
+!*.toml
+!pyproject.toml
+!Pipfile
+!Pipfile.lock
+!poetry.lock
+!uv.lock
+!*.lock
+
+# Note: negation (the ! lines) only works if the parent path is not ignored.
+# Example: if you ignored a parent directory, you can't re-include files inside it
+# unless you lift the parent ignore (see explanation below).
+
+# --- Build / packaging ---
+build/
+dist/
+*.egg-info/
+eggs/
+pip-wheel-metadata/
+
+# --- Test / tool caches ---
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- Jupyter / notebooks ---
+.ipynb_checkpoints
+
+# --- IDEs & OS ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+Thumbs.db
