@@ -50,7 +50,7 @@ def parse_arguments():
                         help='Whether to force-recompile the python wrapper')
 
     # New: how many shots per amplitude evaluation
-    parser.add_argument('--shots_per_eval', type=int, default=100,
+    parser.add_argument('--shots_per_eval', type=int, default=200,
                         help='Number of single-shot experiments per amplitude evaluation')
 
     return parser.parse_args()
