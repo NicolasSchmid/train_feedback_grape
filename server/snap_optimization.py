@@ -101,13 +101,16 @@ if __name__ == "__main__":
             new_ent = max(self.final, self.model.ent_coef * self.decay)
             self.model.ent_coef = new_ent
             return True
-    
+    policy_kwargs = dict(
+    net_arch=[6, 6]   # this is enough for a 2-parameter circuit
+    )
     # Define the reinforcement learning agent
     model = PPO(
         policy='MlpPolicy',
         env=dgx_env,
         gamma=1,
         seed=SEED,
+        policy_kwargs=policy_kwargs,
         # action_noise=action_noise,
         learning_rate=args.learning_rate,
         batch_size=args.batch_size,
@@ -116,7 +119,7 @@ if __name__ == "__main__":
         # learning_starts=args.learning_starts,
         verbose=args.verbosity,
         device=args.device,
-        ent_coef=0.05
+        ent_coef=0.01
     )
 
     # Train the agent
