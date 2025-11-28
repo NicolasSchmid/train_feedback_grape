@@ -74,7 +74,7 @@ if __name__ == "__main__":
     # Modify the size of both the policy and critic agents. These are basically fully connected Neural Networks of size input->n->n->output
     # Hence they have roughly nxn + a few parameters 
     policy_kwargs = dict(
-    net_arch=[12, 12]   # this is enough for a 2-parameter circuit
+    net_arch=[16, 16]   # this is enough for a 2-parameter circuit
     )
     # Define the reinforcement learning agent
     model = PPO(
