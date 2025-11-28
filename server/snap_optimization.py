@@ -13,28 +13,6 @@ import argparse
 
 from stable_baselines3.common.callbacks import BaseCallback
 SEED = 5
-class BestActionCallback(BaseCallback):
-    def __init__(self, verbose=0):
-        super().__init__(verbose)
-        self.best_reward = -float("inf")
-        self.best_action = None
-
-    def _on_step(self) -> bool:
-        # Each rollout sample is in self.locals['rewards'] and self.locals['actions']
-        rewards = self.locals.get("rewards", None)
-        actions = self.locals.get("actions", None)
-
-        if rewards is None or actions is None:
-            return True
-
-        # PPO samples batches, so loop through collected minibatch
-        for r, a in zip(rewards, actions):
-            if r > self.best_reward:
-                self.best_reward = float(r)
-                self.best_action = a.copy()
-
-        return True
-
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Train an agent in a DGX environment.")
@@ -79,15 +57,6 @@ if __name__ == "__main__":
         opnic_wrapper=opnic_wrapper,
         verbosity=args.verbosity
     )
-
-    # Add artifical noise to actions to assist learning
-    sigma_start = np.array([action.sigma for action in action_space.parameters])
-    # action_noise = DecayingNormalActionNoise(
-    #     sigma_start,
-    #     sigma_end_as_scale=args.sigma_end_as_scale,
-    #     total_timesteps=args.total_timesteps
-    # )
-
     
     class EntropyDecayCallback(BaseCallback):
         def __init__(self, initial_ent_coef=0.1, final_ent_coef=0.001, decay_rate=0.999, verbose=0):
@@ -101,8 +70,11 @@ if __name__ == "__main__":
             new_ent = max(self.final, self.model.ent_coef * self.decay)
             self.model.ent_coef = new_ent
             return True
+        
+    # Modify the size of both the policy and critic agents. These are basically fully connected Neural Networks of size input->n->n->output
+    # Hence they have roughly nxn + a few parameters 
     policy_kwargs = dict(
-    net_arch=[8, 8]   # this is enough for a 2-parameter circuit
+    net_arch=[12, 12]   # this is enough for a 2-parameter circuit
     )
     # Define the reinforcement learning agent
     model = PPO(
@@ -112,45 +84,33 @@ if __name__ == "__main__":
         seed=SEED,
         policy_kwargs=policy_kwargs,
         # action_noise=action_noise,
-        learning_rate=args.learning_rate,
-        batch_size=args.batch_size,
+        learning_rate=1e-3, # how intensely the model should update its network per reward
+        batch_size=200, #should be a multiple of n_steps
         # train_freq=args.train_freq,
-        n_steps=args.train_freq,
+        n_steps=200, # how many rewards should be buffered before updating the network
         # learning_starts=args.learning_starts,
         verbose=args.verbosity,
         device=args.device,
         ent_coef=0.01
     )
 
-    # Train the agent
+    # Train the model. Here is the experiment actually executed
     with nvtx.annotate("Model Learn"):
         model.learn(total_timesteps=args.total_timesteps,callback=EntropyDecayCallback(
-        initial_ent_coef=0.05,
-        final_ent_coef=0.001,
-        decay_rate=0.9
+        initial_ent_coef=0.1,
+        final_ent_coef=0.0001,
+        decay_rate=0.999
     ))
 
-    # Evaluate the agent
+    # Find the model prediction of the action which leads to the wished target state
     action, _ = model.predict(observation_space.target_state, deterministic=True)
-    obs, reward, done, _, _ = dgx_env.step(action)
+    nb_rep_end = 200 #put the same on the client side !!!
+    print(f"Evaluate action: {action}, on {args.num_shots *nb_rep_end} shots")
+    avg_reward = 0
+    for i in range(nb_rep_end):
+        obs, reward, done, _, _ = dgx_env.step(action)
+        avg_reward+=reward
+    avg_reward = avg_reward/nb_rep_end
 
-    print(f"Sampled final action: {action}, got reward: {reward}")
-    
-    # best_cb = BestActionCallback()
-
-    # with nvtx.annotate("Model Learn"):
-    #     model.learn(
-    #         total_timesteps=args.total_timesteps,
-    #         callback=best_cb
-    #     )
-
-    # # Evaluate the agent
-    # action, _ = model.predict(observation_space.target_state, deterministic=True)
-    # obs, reward, done, _, _ = dgx_env.step(action)
-
-    # print("==== Best action during training ====")
-    # print("Action:", best_cb.best_action)
-    # print("Reward:", best_cb.best_reward)
-
-
+    print(f"Sampled final action: {action}, got an averaged reward of: {avg_reward}")
     dgx_env.close()
