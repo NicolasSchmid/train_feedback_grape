@@ -102,7 +102,7 @@ if __name__ == "__main__":
             self.model.ent_coef = new_ent
             return True
     policy_kwargs = dict(
-    net_arch=[6, 6]   # this is enough for a 2-parameter circuit
+    net_arch=[8, 8]   # this is enough for a 2-parameter circuit
     )
     # Define the reinforcement learning agent
     model = PPO(
