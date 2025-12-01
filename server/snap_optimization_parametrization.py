@@ -74,7 +74,7 @@ if __name__ == "__main__":
     # Modify the size of both the policy and critic agents. These are basically fully connected Neural Networks of size input->n->n->output
     # Hence they have roughly nxn + a few parameters 
     policy_kwargs = dict(
-    net_arch=[2, 2]   # this is enough for a 2-parameter circuit
+    net_arch=[12, 12]   # this is enough for a 2-parameter circuit
     )
     # Define the reinforcement learning agent
     model = PPO(
@@ -84,7 +84,7 @@ if __name__ == "__main__":
         seed=SEED,
         policy_kwargs=policy_kwargs,
         # action_noise=action_noise,
-        learning_rate=3e-3, # how intensely the model should update its network per reward
+        learning_rate=3e-4, # how intensely the model should update its network per reward
         batch_size=200, #should be a multiple of n_steps
         # train_freq=args.train_freq,
         n_steps=200, # how many rewards should be buffered before updating the network
@@ -99,7 +99,7 @@ if __name__ == "__main__":
         model.learn(total_timesteps=args.total_timesteps,callback=EntropyDecayCallback(
         initial_ent_coef=0.1,
         final_ent_coef=0.0001,
-        decay_rate=0.999
+        decay_rate=0.995
     ))
 
     # Find the model prediction of the action which leads to the wished target state
