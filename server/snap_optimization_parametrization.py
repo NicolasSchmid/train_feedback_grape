@@ -12,7 +12,7 @@ from dgx_suite.opnic_utils import patch_opnic_wrapper
 import argparse
 
 from stable_baselines3.common.callbacks import BaseCallback
-SEED = 5
+SEED = 12
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Train an agent in a DGX environment.")
@@ -74,24 +74,28 @@ if __name__ == "__main__":
     # Modify the size of both the policy and critic agents. These are basically fully connected Neural Networks of size input->n->n->output
     # Hence they have roughly nxn + a few parameters 
     policy_kwargs = dict(
-    net_arch=[12, 12]   # this is enough for a 2-parameter circuit
+    net_arch=[12, 12],   # this is enough for a 2-parameter circuit
+    # log_std_init=1.0
     )
     # Define the reinforcement learning agent
     model = PPO(
         policy='MlpPolicy',
         env=dgx_env,
-        gamma=1,
+        gamma=0.87,
         seed=SEED,
         policy_kwargs=policy_kwargs,
         # action_noise=action_noise,
-        learning_rate=3e-4, # how intensely the model should update its network per reward
-        batch_size=200, #should be a multiple of n_steps
+        learning_rate=5e-5, # how intensely the model should update its network per reward
+        batch_size=100, #should be a multiple of n_steps
         # train_freq=args.train_freq,
-        n_steps=200, # how many rewards should be buffered before updating the network
+        n_steps=100, # how many rewards should be buffered before updating the network
         # learning_starts=args.learning_starts,
         verbose=args.verbosity,
         device=args.device,
-        ent_coef=0.01
+        ent_coef=0.01,
+        clip_range=0.1,
+        # n_epochs=4,
+        # target_kl=0.27
     )
 
     # Train the model. Here is the experiment actually executed
