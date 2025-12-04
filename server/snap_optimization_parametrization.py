@@ -81,30 +81,33 @@ if __name__ == "__main__":
     model = PPO(
         policy='MlpPolicy',
         env=dgx_env,
-        gamma=0.87,
+        # gamma=0.87,
+        gamma=1,
         seed=SEED,
         policy_kwargs=policy_kwargs,
         # action_noise=action_noise,
-        learning_rate=5e-5, # how intensely the model should update its network per reward
-        batch_size=100, #should be a multiple of n_steps
+        learning_rate=5e-4, # how intensely the model should update its network per reward
+        batch_size=64, #should be a multiple of n_steps
         # train_freq=args.train_freq,
-        n_steps=100, # how many rewards should be buffered before updating the network
+        n_steps=2, # how many rewards should be buffered before updating the network
         # learning_starts=args.learning_starts,
         verbose=args.verbosity,
         device=args.device,
         ent_coef=0.01,
-        clip_range=0.1,
+        # clip_range=0.1,
         # n_epochs=4,
         # target_kl=0.27
     )
 
     # Train the model. Here is the experiment actually executed
     with nvtx.annotate("Model Learn"):
-        model.learn(total_timesteps=args.total_timesteps,callback=EntropyDecayCallback(
-        initial_ent_coef=0.1,
-        final_ent_coef=0.0001,
-        decay_rate=0.995
-    ))
+        model.learn(total_timesteps=args.total_timesteps,
+                    callback=EntropyDecayCallback(
+        initial_ent_coef=0.002,
+        final_ent_coef=0.0003,
+        decay_rate=0.999
+    )
+    )
 
     # Find the model prediction of the action which leads to the wished target state
     action, _ = model.predict(observation_space.target_state, deterministic=True)

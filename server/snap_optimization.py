@@ -84,10 +84,10 @@ if __name__ == "__main__":
         seed=SEED,
         policy_kwargs=policy_kwargs,
         # action_noise=action_noise,
-        learning_rate=3e-3, # how intensely the model should update its network per reward
-        batch_size=200, #should be a multiple of n_steps
+        learning_rate=5e-4, # how intensely the model should update its network per reward
+        batch_size=64, #should be a multiple of n_steps
         # train_freq=args.train_freq,
-        n_steps=200, # how many rewards should be buffered before updating the network
+        n_steps=2, # how many rewards should be buffered before updating the network
         # learning_starts=args.learning_starts,
         verbose=args.verbosity,
         device=args.device,
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     # Find the model prediction of the action which leads to the wished target state
     action, _ = model.predict(observation_space.target_state, deterministic=True)
     nb_rep_end = 200 #put the same on the client side !!!
-    num_shots=10 # number of shots per observation,put the same on the client side!!!
+    num_shots=1 # number of shots per observation,put the same on the client side!!!
     print(f"Evaluate action: {action}, on {num_shots *nb_rep_end} shots")
     avg_reward = 0
     for i in range(nb_rep_end):
