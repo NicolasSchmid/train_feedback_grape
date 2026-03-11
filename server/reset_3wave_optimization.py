@@ -10,7 +10,7 @@ from dgx_suite.dgx_parameter_space import DgxActionSpace, DgxObservationSpace
 from dgx_suite.dgx_observer import Observer
 from dgx_suite.opnic_utils import patch_opnic_wrapper
 
-nb_average = 5000.0
+nb_average = 200.0
 
 # ---------------------------------------------------------------------
 # Argument parsing
@@ -90,7 +90,7 @@ def objective(params, dgx_env, verbosity=0):
     # Maximize excitation -> minimize (1 - p_exc)
     cost = 1.0 - p_exc
 
-    if verbosity >= 3:
+    if verbosity >= 2:
         print(f"additional_detuning_storage: {params[0]}")
         print(f"relative_detuning_storage_readout: {params[1]}")
         print(f"additional_detuning_qubit: {params[2]}")
@@ -165,8 +165,8 @@ if __name__ == "__main__":
         method="Powell",
         bounds=bounds,
         options=dict(
-            xtol=1e-3,   # tune these to your shot noise level
-            ftol=5e-3,
+            xtol=5e-4,   # tune these to your shot noise level
+            ftol=1e-3,
             maxiter=200000,
             maxfev=2000000,
         ),
