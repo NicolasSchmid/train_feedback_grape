@@ -31,44 +31,44 @@
   "readout_rise_fall_time_ns":20,
 
   "// time_of_flight": "in ns must be a multiple of 4",
-  "time_of_flight": 368,
+  "time_of_flight": 372,
 
   "// Continuous readout pulse": "Continuous wave pulse",
   "const_len_readout": 100,
   "const_amp_readout": 0.03,
 
-  "readout_FWHM_MHz":0.786,
-  "readout_dispersive_shift_MHz": 3.41,
-  "readout_mid_frequency_ge_IF_MHz":46.233,
+  "readout_FWHM_MHz":0.779690,
+  "readout_dispersive_shift_MHz": 3.398835,
+  "readout_mid_frequency_ge_IF_MHz":46.276,
 
   "// ##########################################": "#############################################",
   "// #                  Qubits                   #": "#                  Qubits                   #",
   "// #######################################": "#############################################",
   "qubit_LO_GHz": 3.0,
-  "qubit_IF_MHz": 34.258205 ,
+  "qubit_IF_MHz": 34.087204 ,
 
   "// qubit_power": "power of qubit drive in dBm at waveform amp = 1 (steps of 3 dB)",
   "qubit_power": -1,
   "// qubit_T1_us": "don't put more that one digit after the dot",
-  "qubit_T1_us":  47.2,
-  "qubit_T2_us": 34.1,
-  "qubit_T2_echo_us": 36.9,
+  "qubit_T1_us":  44.1,
+  "qubit_T2_us": 33.7,
+  "qubit_T2_echo_us": 36.6,
   "qubit_thermal_population": 0.026,
   "TLS_coupling_freq_kHz":  7125,
 
   "// Drag pulses": "Drag pulses",
-  "drag_coef":  0.559420,
+  "drag_coef":  0.558854,
 
   "AC_stark_detuning_MHz": 0,
 
-  "qubit_ef_transition_IF_MHz":-130.0136,
-  "anharmonicity_MHz":-164.272, 
+  "qubit_ef_transition_IF_MHz":-130.1842,
+  "anharmonicity_MHz":-164.271, 
   "ef_180_len": 64,
-  "ef_180_amp": 0.115611,
+  "ef_180_amp":  0.116033,
   "gef_centroids": [
-    [-0.002494, -0.006338],
-    [0.006860, -0.006156],
-    [0.007099, -0.000743]
+    [-0.002327, -0.005851],
+    [0.005929, -0.005818],
+    [0.006215, -0.000708]
   ],
 
   "readout_qubit_disp_shift_MHz":3.385242 ,
@@ -77,35 +77,36 @@
   "// #     Qubit Pulse params                 #": "#         Pulse params                 #",
   "// ###############################": "########################################",
   "x180_len": 64,
-  "x180_amp": 0.131975,
+  "x180_amp": 0.131652,
 
   "x90_len":32,
-  "x90_amp": 0.132527,
+  "x90_amp":   0.132258,
 
   "x180_len_long": 4000,
-  "x180_amp_long": 0.00220644 ,
+  "x180_amp_long": 0.00221331 ,
 
   "square_pi_len_ns": 252,
   "square_pi_amp": 0.0134595,
 
   "// selective_square_pulse_len from 2900 to 3035": "optimal length simulated in analysis notebook",
   "selective_square_pulse_len":2884,
-  "selective_square_pulse_amp":0.00120735,
+  "selective_square_pulse_amp": 0.00120397,
 
 
   "// #####################################": "########################################",
   "// # IQ Plane thresholding              #": "# IQ Plane thresholding",
   "// #########################################": "#########################################",
-  "rotation_angle_deg":210.27711740787203,
-  "ge_threshold":    2.067e-03,
+  "rotation_angle_deg": 169.78781633202448,
+  "ge_threshold":    1.779e-03,
 
   "// ####################################": "#############################################",
   "// #         Storage cavity           #": "#                  Storage cavity           #",
   "// ###################################": "#############################################",
   "storage_LO_GHz": 4.6,
-  "storage_IF_MHz":  21.465963,
-  "storage_T1_us":  223.3,
-  "storage_T2_us_pop_ramsey": 30.361,
+  "storage_IF_MHz":   21.462316,
+  "storage_T1_us":  231.9,
+  "storage_T2_us":  334.6,
+  "storage_pure_dephasing_us":1279,
   "// cavity_power": "in dBm for amp =1, ideally we should put more attenuation to the line as hte best SNR is when this power is between 1 and 10dbm",
   "cavity_power": -5,
   "// storage_amp_factor": "0.02 for spectroscopy, also called \"storage_const_amp_corrected\"",
@@ -113,10 +114,11 @@
 
   "storage_thermal_population": 0.002,
   "// kappa_displacement": "values used for SNAP gates, must be positive",
-  "t_parity_ns": 715.8066709569217,
-  "t0_populated_ramsey_ns":38.6935867013493,
-  "chi_kHz":  662.6902972198327,
-  "self_Kerr_kHz":0.12478,
+  "t_parity_ns": 718.5748918336551,
+  "t0_populated_ramsey_ns":36.644106853096105,
+  "chi_kHz":  660.8313,
+  "self_Kerr_kHz":-0.7211,
+  "short_coh2_ramsey_t0_ns": 201.23,
 
 
   "// Continuous wave": "Continuous wave",
@@ -131,7 +133,7 @@
   "// short cavity displacement pulse": "short_cavity_displacement",
   "short_storage_coh2_raise_time": 20,
   "short_storage_coh2_disp_len":200,
-  "short_storage_coh2_disp_amp":  0.23676445975233398,
+  "short_storage_coh2_disp_amp":  0.2358528160244245,
 
   "// ############################": "##############################",
   "// #   active reset params      #": "#   active reset params      #",
@@ -203,10 +205,15 @@
 
 
   "// ################": "########################################",
-  "// #     SNAP gate (mostly unused)                #": "#         Pulse params                 #",
+  "// #     SNAP gate              #": "#         Pulse params                 #",
   "// ###############": "########################################",
-  "x360_len_long": 8000, 
-  "x360_amp_long": 0.00216985,
+  "x360_len_long": 15000, 
+  "x360_amp_long":0.00121168,
+
+  "x360_flattop_length_ns": 8000,
+  "x360_flattop_amp": 0.00112617,
+  "x360_flattop_rise_fall_time_ns": 1200,
+  "SNAP_fock_1_optimal_shift_qubit_kHz": -16.0,
 
   "// ######################################": "########################################",
   "// #       Optimal control grape pulses    #": "#       Optimal control grape pulses    #",
