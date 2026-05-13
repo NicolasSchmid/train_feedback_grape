@@ -11,6 +11,9 @@ env/
 .env/
 .envs/
 
+server/
+custom_dgx_suite/
+
 
 # --- Images (do not upload images) ---
 # common raster & vector formats
