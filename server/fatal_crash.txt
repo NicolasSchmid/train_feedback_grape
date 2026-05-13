@@ -1,7 +1,0 @@
-FATAL CRASH LOG:
-Traceback (most recent call last):
-  File "/home/user//python_experiments/server/bspline_feedback_grape.py", line 202, in <module>
-    packet = OutgoingPacket(*action_numpy_reshaped)
-  File "/home/user//dgx-suite/applications/server/wrapper/build/python/opnic_wrapper.py", line 393, in __init__
-    _opnic_wrapper.OutgoingPacket_swiginit(self, _opnic_wrapper.new_OutgoingPacket(_QI_0_0, _QI_1_0, _QI_2_0, _QI_3_0, _QI_4_0, _QI_5_0, _QI_6_0, _QI_7_0, _QI_8_0, _QQ_0_0, _QQ_1_0, _QQ_2_0, _QQ_3_0, _QQ_4_0, _QQ_5_0, _QQ_6_0, _QQ_7_0, _QQ_8_0, _CI_0_0, _CI_1_0, _CI_2_0, _CI_3_0, _CI_4_0, _CI_5_0, _CI_6_0, _CI_7_0, _CI_8_0, _CQ_0_0, _CQ_1_0, _CQ_2_0, _CQ_3_0, _CQ_4_0, _CQ_5_0, _CQ_6_0, _CQ_7_0, _CQ_8_0))
-TypeError: in method 'new_OutgoingPacket', argument 1 of type 'double'
