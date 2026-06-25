@@ -27,8 +27,8 @@
   "resonator_power": 2,
 
 
-  "readout_len":2616,
-  "readout_amp": 0.13622024291478,
+  "readout_len":2596,
+  "readout_amp": 0.11029312719384,
   "readout_rise_fall_time_ns":20,
 
   "// time_of_flight": "in ns must be a multiple of 4",
@@ -42,14 +42,24 @@
   "readout_dispersive_shift_MHz":3.529338,
   "readout_mid_frequency_ge_IF_MHz":46.255,
 
-  "readout_storage_frame_rot_deg":-35.889678,
+  "readout_storage_frame_rot_deg":-23.625061,
 
 
-  "// other readout settings for feedback grape": "other readout settings for feedback grape",
+
+
+  "// short and high fidelity readout params": "short and high fidelity readout params",
 
   "readout_len_fg0": 1064,
   "readout_amp_fg0": 0.291873418,
   "readout_IF_fg0_MHz": 47.075000,
+
+  "// best params for feedback grape": "best params for feedback grape",
+  "resonator_IF_MHz_fg": 48.156,
+  "readout_len_fg":2596,
+  "readout_amp_fg": 0.11029312719384,
+
+
+  "// other good readout settings": "other good readout settings",
 
   "readout_len_fg1": 964,
   "readout_amp_fg1": 0.361626218,
@@ -67,13 +77,17 @@
   "readout_amp_fg4": 0.11029312719384,
   "readout_IF_fg4_MHz": 47.9,
 
+  "readout_len_fg5": 2616,
+  "readout_amp_fg5": 0.13758547,
+  "readout_IF_fg5_MHz": 48.156,
+
 
 
   "// ##########################################": "#############################################",
   "// #                  Qubits                   #": "#                  Qubits                   #",
   "// #######################################": "#############################################",
   "qubit_LO_GHz": 3.0,
-  "qubit_IF_MHz": 34.106023,
+  "qubit_IF_MHz":  34.106845,
 
   "// qubit_power": "power of qubit drive in dBm at waveform amp = 1 (steps of 3 dB)",
   "qubit_power": -1,
@@ -86,18 +100,8 @@
 
   "// Drag pulses": "Drag pulses",
   "drag_coef":  0.558854,
-
   "AC_stark_detuning_MHz": 0,
-
-  "qubit_ef_transition_IF_MHz":-130.1842,
-  "anharmonicity_MHz":-164.271, 
-  "ef_180_len": 64,
-  "ef_180_amp":  0.116033,
-  "gef_centroids": [
-    [-0.002327, -0.005851],
-    [0.005929, -0.005818],
-    [0.006215, -0.000708]
-  ],
+  "anharmonicity_MHz":-164.25838108,
 
   "readout_qubit_disp_shift_MHz":3.385242 ,
 
@@ -105,44 +109,76 @@
   "// #     Qubit Pulse params                 #": "#         Pulse params                 #",
   "// ###############################": "########################################",
   "x180_len": 64,
-  "x180_amp": 0.133381,
+  "x180_amp": 0.141693,
 
   "x90_len":32,
-  "x90_amp":   0.133978,
+  "x90_amp": 0.142377,
 
   "x180_len_long": 4000,
-  "x180_amp_long": 0.00221331 ,
+  "x180_amp_long":0.00237723 ,
 
   "square_pi_len_ns": 252,
-  "square_pi_amp": 0.0134595,
+  "square_pi_amp": 0.02897,
 
   "// selective_square_pulse_len from 2900 to 3035": "optimal length simulated in analysis notebook",
   "selective_square_pulse_len":2920,
-  "selective_square_pulse_amp": 0.00121983,
+  "selective_square_pulse_amp": 0.00129526,
+
+"// #################": "########################################",
+  "// #     Higher Qubit level Pulse params                 #": "#         Pulse params                 #",
+  "// ###########": "########################################",
+  "qubit_ef_transition_IF_MHz":-130.164799,
+  "qubit_ef_peaks_spacing_MHz":0.10045369,
+  "ef_T2_us":8.074,
+
+  "ef_180_len": 40,
+  "ef_180_amp":  0.20613815,
+
+  "gef_centroids": [
+    [-0.002327, -0.005851],
+    [0.005929, -0.005818],
+    [0.006215, -0.000708]
+  ],
+
+  
+  "Q_threshold":0.01,
+
+  "qubit_fh_transition_IF_MHz_MID": -315.66859103,
+  "fh_180_amp_scale_relative_to_ef_pi": 0.90591495,
+  "fh_ramsey_fft_peak_spacing_MHz":1.70190430,
+
+
+  "t34_180_amp_scale_relative_to_ef_pi": 0.54337119,
+  "t34_MID_freq_IF_MHz":-520.5994905551562,
+  "t34_diff_freq_MHz":21.08764648 ,
+  "high_t34_IF_peak_MHz":-520.5994905551562,
+  "low_t34_IF_peak_MHz":-521.9984163364062,
+
 
 
   "// #####################################": "########################################",
   "// # IQ Plane thresholding              #": "# IQ Plane thresholding",
   "// #########################################": "#########################################",
-  "rotation_angle_deg":  330.75014862206075,
-  "ge_threshold":    2.389e-03,
+  "rotation_angle_deg":  329.9671528334802,
+  "ge_threshold":    2.382e-03,
 
   "// ####################################": "#############################################",
   "// #         Storage cavity           #": "#                  Storage cavity           #",
   "// ###################################": "#############################################",
   "storage_LO_GHz": 4.6,
-  "storage_IF_MHz":   21.462524,
+  "storage_IF_MHz":   21.462539,
   "storage_T1_us":  231.9,
   "storage_T2_us":  334.6,
   "storage_pure_dephasing_us":1279,
   "// cavity_power": "in dBm for amp =1, ideally we should put more attenuation to the line as hte best SNR is when this power is between 1 and 10dbm",
   "cavity_power": -5,
 
-  "storage_thermal_population": 0.013157,
-  "t_parity_ns": 721.855,
-  "t0_populated_ramsey_ns":35.272,
-  "chi_kHz":  660.390790,
-  "self_Kerr_kHz":-0.7225,
+  "storage_thermal_population": 0.000570,
+  "t_parity_ns": 716.237,
+  "t0_populated_ramsey_ns":40.367,
+  "chi_kHz":  660.847509,
+  "self_Kerr_kHz":-0.7109,
+  "self_Kerr_if_qubit_in_e_kHz":-0.357,
   "short_coh2_ramsey_t0_ns": 201.23,
 
   "// Continuous wave": "Continuous wave",
@@ -157,14 +193,14 @@
   "// short cavity displacement pulse": "short_cavity_displacement",
   "short_storage_coh2_raise_time": 20,
   "short_storage_coh2_disp_len":200,
-  "short_storage_coh2_disp_amp":  0.24105155,
+  "short_storage_coh2_disp_amp":  0.24078483,
 
   "// ############################": "##############################",
   "// #   active reset params      #": "#   active reset params      #",
   "// ##############################": "##############################",
   "// reset_time_RO_us": "must be multiple of 0.004",
   "reset_time_RO_us":0.4,
-  "threshold_shift": 2.135e-03,
+  "threshold_shift": 2.382e-03,
   "max_nb_pulse": 3,
 
   "// ##########################": "##############################",
@@ -224,7 +260,7 @@
   "detuning_storage_rabi_reset_MHz":-27.625,
   "qubit_drive_detuning_rabi_reset_MHz":3.9,
   
-  "rabi_reset_ramp_down_length_ns":2000,
+  "rabi_reset_ramp_down_length_ns":4000,
 
 
 
@@ -243,6 +279,6 @@
   "// #       Optimal control grape pulses    #": "#       Optimal control grape pulses    #",
   "// ########################################": "########################################",
   "// optimal_scaling_qubit": "to be determined by the qubit_amp_factor experiment",
-  "optimal_scaling_qubit":    455.8238707321907,
-  "optimal_scaling_storage":   49.11626659
+  "optimal_scaling_qubit":    430.93301817102906,
+  "optimal_scaling_storage":   48.54669168
 }
