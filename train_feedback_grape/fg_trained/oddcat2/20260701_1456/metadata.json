@@ -1,0 +1,39 @@
+{
+  "timestamp": "20260701_1456",
+  "comment": "no kerr during readout, not much dephasing during readout",
+  "save_name": "fg_trained/oddcat2",
+  "run_folder": "/home/user/python_experiments/train_feedback_grape/fg_trained/oddcat2/20260701_1456",
+  "parameters": {
+    "N_cav": 25,
+    "ndt_drive": 200,
+    "t_idle_us": 10.0,
+    "sigma_e_deg": 3.0,
+    "sigma_g_deg": 1.0,
+    "add_kerr_during_readout": false,
+    "readout_length_ns": 2596,
+    "chi": -4.152227358835029,
+    "chi_over_2pi_MHz": -0.660847509,
+    "Kc_g": -0.004466716434873968,
+    "Kc_g_over_2pi_MHz": -0.0007109000000000001,
+    "Kc_e": -0.002243097154663112,
+    "Kc_e_over_2pi_MHz": -0.00035699999999999995,
+    "t1_qub_us": 44.7,
+    "t2_qub_us": 34.2,
+    "t1_cav_us": 231.9
+  },
+  "training": {
+    "batch_size": 32,
+    "num_time_steps_train": 16,
+    "num_time_steps_test": 150,
+    "init_lr": 0.0002,
+    "final_lr": 1e-06,
+    "constant_steps": 1000,
+    "decay_steps": 7000,
+    "total_steps": 8000,
+    "num_mean_fids_train": 1,
+    "final_mean_fid_train": 0.6593849658966064,
+    "mean_fids_train": [
+      0.6593849658966064
+    ]
+  }
+}
