@@ -1,0 +1,35 @@
+{
+  "timestamp": "20260703_1015",
+  "comment": "",
+  "save_name": "fg_trained/fock2",
+  "run_folder": "/home/user/python_experiments/train_feedback_grape/fg_trained/fock2/20260703_1015",
+  "parameters": {
+    "N_cav": 25,
+    "ndt_drive": 130,
+    "t_idle_us": 10.0,
+    "sigma_e_deg": 1.0,
+    "sigma_g_deg": 0.1,
+    "readout_length_ns": 2596,
+    "chi": -4.14531572305024,
+    "chi_over_2pi_MHz": -0.6597474879999999,
+    "Kc_g": -0.004488079264918379,
+    "Kc_g_over_2pi_MHz": -0.0007143000000000001,
+    "Kc_e": -0.002243097154663112,
+    "Kc_e_over_2pi_MHz": -0.00035699999999999995,
+    "t1_qub_us": 45.6,
+    "t2_qub_us": 36.4,
+    "t1_cav_us": 231.9
+  },
+  "training": {
+    "batch_size": 32,
+    "num_time_steps_train": 32,
+    "num_time_steps_test": 150,
+    "init_lr": 0.0004,
+    "final_lr": 1e-05,
+    "constant_steps": 2000,
+    "decay_steps": 8000,
+    "total_steps": 10000,
+    "num_mean_fids_train": 0,
+    "mean_fids_train": []
+  }
+}
