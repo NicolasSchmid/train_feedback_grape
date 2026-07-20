@@ -1,0 +1,54 @@
+{
+  "seed": 1234,
+  "training_curriculum": [
+    {
+      "num_feedback_steps": 3,
+      "batch_size": 128,
+      "gradient_accumulation_steps": 1,
+      "num_batches": 5000
+    },
+    {
+      "num_feedback_steps": 5,
+      "batch_size": 70,
+      "gradient_accumulation_steps": 2,
+      "num_batches": 5000
+    },
+    {
+      "num_feedback_steps": 6,
+      "batch_size": 64,
+      "gradient_accumulation_steps": 2,
+      "num_batches": 5000
+    },
+    {
+      "num_feedback_steps": 7,
+      "batch_size": 50,
+      "gradient_accumulation_steps": 3,
+      "num_batches": 5000
+    },
+    {
+      "num_feedback_steps": 8,
+      "batch_size": 45,
+      "gradient_accumulation_steps": 4,
+      "num_batches": 5000
+    },
+    {
+      "num_feedback_steps": 9,
+      "batch_size": 40,
+      "gradient_accumulation_steps": 5,
+      "num_batches": 5000
+    },
+    {
+      "num_feedback_steps": 10,
+      "batch_size": 36,
+      "gradient_accumulation_steps": 6,
+      "num_batches": 5000
+    }
+  ],
+  "total_training_batches": 35000,
+  "baseline_include_encoding_decoding_time": true,
+  "N_cav": 23,
+  "pulse_duration_ns": 1408,
+  "num_bsplines": 20,
+  "held_out_mean_fidelity": 0.8418171405792236,
+  "held_out_sem": 0.013920138636899596
+}
