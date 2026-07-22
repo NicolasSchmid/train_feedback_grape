@@ -1,0 +1,24 @@
+{
+  "selected_run_folder": "/home/user/python_experiments/train_feedback_grape/quantum_memory/20260720_0935",
+  "selected_checkpoint_path": "/home/user/python_experiments/train_feedback_grape/quantum_memory/20260720_0935/params_only/1",
+  "num_feedback_steps_test": 10,
+  "N_cav_values": [
+    20,
+    30,
+    50,
+    70
+  ],
+  "ndt_drive_values": [
+    150,
+    210,
+    280
+  ],
+  "evaluation_seed": 20260721,
+  "evaluation_microbatch_size": 16,
+  "evaluation_num_microbatches": 4,
+  "mean_fidelity_tolerance": 0.001,
+  "rms_fidelity_tolerance": 0.003,
+  "edge_population_tolerance": 1e-05,
+  "edge_fock_levels": 3,
+  "gpu_memory_fraction": "0.95"
+}

@@ -1,0 +1,33 @@
+{
+  "seed": 1234,
+  "training_curriculum": [
+    {
+      "num_feedback_steps": 11,
+      "batch_size": 64,
+      "gradient_accumulation_steps": 3,
+      "num_batches": 1500
+    }
+  ],
+  "total_training_batches": 1500,
+  "baseline_include_encoding_decoding_time": true,
+  "history_schema_version": 4,
+  "diagnostic_rolling_window": 50,
+  "validation_interval": 50,
+  "validation_batch_size": 64,
+  "gradient_clip_norm": 5.0,
+  "photon_soft_limit": 10.0,
+  "photon_soft_width": 2.0,
+  "energy_penalty_weight": 0.01,
+  "qubit_envelope_soft_limit": 0.8,
+  "cavity_envelope_soft_limit": 0.8,
+  "pulse_soft_width": 0.1,
+  "pulse_penalty_weight": 0.002,
+  "N_cav": 25,
+  "ndt_drive": 200,
+  "pulse_duration_ns": 1408,
+  "num_bsplines": 20,
+  "trainable_initial_carry": true,
+  "initial_carry_norm": 0.005853286478668451,
+  "held_out_mean_fidelity": 0.8011994361877441,
+  "held_out_sem": 0.014226060219726904
+}
